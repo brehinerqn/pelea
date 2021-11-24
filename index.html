@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>
+        POKEMON
+    </title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewpor" content="width=device-width,">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <style>
+        body {
+            background: no-repeat url(images/fondo1.gif) center;
+            background-size: cover;
+            height: 100vh;
+            width: 100vw;
+            overflow-y: hidden;
+            overflow-x: hidden;
+
+            backdrop-filter: grayscale(100%)
+        }
+
+        .row {
+
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: row;
+            filter: grayscale(100%);
+
+
+        }
+
+        .col {
+            position: relative;
+            width: 50vw;
+
+        }
+
+        .ocultar {
+            opacity: 100;
+        }
+
+        #gallo1 {
+            transform: scale(-1, 1);
+            width: 500px;
+            height: 500px;
+            position: absolute;
+            top: 20rem;
+            left: 5 rem;
+            margin: 0;
+            opacity: 1;
+
+
+        }
+
+        #gallo2 {
+
+            width: 500px;
+            height: 500px;
+            position: absolute;
+            top: 20rem;
+            right: 5rem;
+            opacity: 1;
+
+
+        }
+
+        #bola2 {
+
+            width: 350px;
+            height: 350px;
+            position: absolute;
+            top: 30rem;
+            right: 25rem;
+            opacity: 0;
+            z-index: 100000;
+
+
+        }
+
+        #bola1 {
+
+            transform: scale(-1, 1);
+            width: 350px;
+            height: 350px;
+            position: absolute;
+            top: 30rem;
+            left: 25rem;
+            opacity: 0;
+            z-index: 1000000;
+
+
+        }
+
+        @keyframes rede{
+            0% {}
+
+            100% {
+
+                opacity: 100%;
+            }
+        }
+
+        @keyframes fuego1 {
+            0% {}
+
+            100% {
+
+                opacity: 100%;
+            }
+        }
+
+        @keyframes fuego2 {
+            0% {}
+
+            100% {
+
+                opacity: 100%;
+            }
+
+        }
+
+        @keyframes fuego_centro {
+            0% {}
+
+            100% {
+                left: 37.5vw;
+                opacity: 100%;
+            }
+
+        }
+
+        @keyframes espuelazo1 {
+            0% {
+                transform: translate(0rem, 0rem) rotate(0deg) scaleX(-1);
+            }
+
+            50% {
+                transform: translate(15rem, 0rem) rotate(30deg) scaleX(-1);
+            }
+
+            80% {
+
+
+                transform: translate(72rem, 0rem) rotate(0deg) scaleX(-1);
+
+            }
+
+            100% {
+                transform: translate(0rem, 0rem) rotate(0deg) scaleX(-1);
+            }
+        }
+
+        @keyframes espuelazo2 {
+            0% {
+                transform: translate(0rem, 0rem) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(-15rem, 0rem) rotate(-30deg);
+            }
+
+            80% {
+                transform: translate(-75rem, 0rem) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(0rem, 0rem) rotate(0deg);
+            }
+        }
+
+        @keyframes defiende1 {
+            0% {
+                transform: scaleX(-1);
+            }
+
+            100% {
+                transform: scaleX(-1) rotate(360deg);
+            }
+        }
+
+        @keyframes defiende2 {
+            0% {
+                transform: rotate(0);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes picotazo1 {
+            0% {
+                transform: translateX(0);
+                opacity: 1;
+
+            }
+
+
+            90% {
+
+                opacity: 1;
+            }
+
+
+            100% {
+
+                transform: translateX(55rem);
+                opacity: 0;
+            }
+
+        }
+
+        @keyframes picotazo2 {
+            0% {
+                transform: translateX(0);
+                opacity: 1;
+
+            }
+
+
+            90% {
+
+                opacity: 1;
+            }
+
+
+            100% {
+
+                transform: translateX(-55rem);
+                opacity: 0;
+            }
+        }
+
+        .barra {
+            position: absolute;
+            top: 1rem;
+            left: 5rem;
+            width: 80%;
+            transition: 300ms all ease;
+        }
+
+        .fondo-barra {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.342);
+            width: 100%;
+            margin-top: 1rem;
+            top: 5rem;
+            height: 2rem;
+            transition: 300ms all ease;
+
+        }
+
+        #vida1 {
+            position: absolute;
+            top: 0;
+            background-color: chartreuse;
+            width: 100%;
+            height: 2rem;
+            transition: 300ms all ease;
+        }
+
+
+        #vida2 {
+            position: absolute;
+            top: 0;
+            background-color: chartreuse;
+            width: 100%;
+            height: 2rem;
+            transition: 300ms all ease;
+        }
+
+        .barra p {
+            font-size: 2rem;
+            position: absolute;
+            top: 0;
+            background: #F7FF08;
+            background: -webkit-linear-gradient(to top, #F7FF08 36%, #FF0A0A 66%);
+            background: -moz-linear-gradient(to top, #F7FF08 36%, #FF0A0A 66%);
+            background: linear-gradient(to top, #F7FF08 36%, #FF0A0A 66%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: 300ms all ease;
+
+        }
+
+        #pvida1,
+        #pvida2 {
+            left: 47.5%;
+            top: -2.5rem;
+            z-index: 1896530;
+
+        }
+
+        .botton a {
+
+            position: absolute;
+            left: 40vw;
+            top: 80vh;
+            width: 20vw;
+            height: 10vh;
+            font-size: 4rem;
+            text-align: center;
+            font-family: dark;
+            background: #F7FF08;
+            background: -webkit-linear-gradient(to top, #F7FF08 36%, #FF0A0A 66%);
+            background: -moz-linear-gradient(to top, #F7FF08 36%, #FF0A0A 66%);
+            background: linear-gradient(to top, #F7FF08 36%, #FF0A0A 66%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+
+
+        }
+
+        #game {
+            z-index: 150000;
+            display: flex;
+            position: absolute;
+            width: 50vw;
+            left: 25vw;
+            top: 30vh;
+            opacity: 0;
+        }
+
+        @font-face {
+            font-family: vacio;
+            src: url(fuentes/Pokemon\ Hollow.ttf);
+        }
+
+        @font-face {
+            font-family: solido;
+            src: url(fuentes/Pokemon\ Solid.ttf);
+        }
+
+        @font-face {
+            font-family: gover;
+            src: url(fuentes/Kingdom_Hearts_Font.ttf);
+        }
+
+        @font-face {
+            font-family: dark;
+            src: url(fuentes/pdark.ttf );
+        }
+
+        @font-face {
+            font-family: plok;
+            src: url(fuentes/PLOK.TTF);
+        }
+
+        @font-face {
+            font-family: hoff;
+            src: url(fuentes/hoffmann.TTF);
+        }
+
+        .gana {
+            opacity: 0;
+            z-index: 1651613;
+            width: 30vw;
+            height: 20vh;
+            left: 35vw;
+            top: 45vh;
+            position: absolute;
+            font-family: dark;
+            text-align: center;
+            background: #F7FF08;
+            background: -webkit-linear-gradient(to top, #F7FF08 36%, #FF0A0A 66%);
+            background: -moz-linear-gradient(to top, #F7FF08 36%, #FF0A0A 66%);
+            background: linear-gradient(to top, #F7FF08 36%, #FF0A0A 66%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #golpe1 {
+            transform: scale(-1, 1);
+            width: 12vw;
+            height: 30vh;
+            position: absolute;
+            top: 50vh;
+            left: 20vw;
+            opacity: 0%;
+            z-index: 651646844;
+        }
+
+        #golpe2 {
+
+            width: 15vw;
+            height: 30vh;
+            position: absolute;
+            top: 50vh;
+            right: 20vw;
+            opacity: 0%;
+            z-index: 54151156464;
+        }
+
+        #golpe3 {
+            width: 20vw;
+            height: 60vh;
+            position: absolute;
+            top: 35vh;
+            right: 13vw;
+            opacity: 0%;
+            z-index: 54151156464;
+        }
+
+        #reducir2 {
+            left: 35%;
+            top: 30vh;
+            z-index: 1896530;
+            font-size: 5rem;
+            position: absolute;
+            background: #F7FF08;
+            background: -webkit-linear-gradient(to top, #F7FF08 36%, #FF0A0A 66%);
+            background: -moz-linear-gradient(to top, #F7FF08 36%, #FF0A0A 66%);
+            background: linear-gradient(to top, #F7FF08 36%, #FF0A0A 66%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            transition: 300ms all ease;
+
+        }
+        #reducir1 {
+            left: 55%;
+            top: 30vh;
+            z-index: 189665451530;
+            font-size: 5rem;
+            position: absolute;
+            background: #F7FF08;
+            background: -webkit-linear-gradient(to top, #F7FF08 36%, #FF0A0A 66%);
+            background: -moz-linear-gradient(to top, #F7FF08 36%, #FF0A0A 66%);
+            background: linear-gradient(to top, #F7FF08 36%, #FF0A0A 66%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            transition: 300ms all ease;
+
+        }
+        #explo1{
+            position: absolute;
+            width: 30vw;
+            z-index: 10000000000;
+            top: 25vh;
+            opacity: 0;
+           
+        }
+        #explo2{
+            position: absolute;
+            width: 30vw;
+            z-index: 10000000000;
+            top: 25vh;
+            right:5vw;
+            opacity: 0;        
+        }
+        #la1{
+            position: absolute;
+            width: 15vw;
+            z-index: 10000000000;
+            top: 40vh;
+            left:8vw;
+            opacity: 0;        
+        }
+        #la2{
+            position: absolute;
+            width: 15vw;
+            z-index: 10000000000;
+            top:40vh;
+            right:12vw;
+            opacity: 0;        
+        }
+        
+    </style>
+
+</head>
+
+
+
+<body>
+    <audio src="audio/fuego.mp3" id="fondo" loop></audio>
+    <audio src="audio/aleteo.mp3" id="aleteo" loop></audio>
+    <audio src="audio/fireball.mp3 " id="fire"></audio>
+    <audio src="audio/cabeza.mp3" id="cabeza"></audio>
+    <img src="images/game.gif" id="game">
+    <h1 class="gana"></h1>
+
+
+
+    <div class="botton">
+        <a class="waves-effect waves-dark" id="inicio">Comenzar</a>
+    </div>
+    <div class="row">
+        <div class="col s6" id="uno">
+            <img src="images/charizard-s.gif" id="gallo1">
+            <img src="images/dia.gif" id="explo1">
+            <img src="images/lapida.png" id="la1">
+
+            <p id="reducir1">0</p>
+
+            <div class="barra">
+                <p>Charizard 1</p>
+                <div class="fondo-barra">
+                    <p id="pvida1"> 100% </p>
+                    <div class="barra-vida" id="vida1">
+
+                    </div>
+
+                </div>
+
+            </div>
+            <img src="images/boladefuego.png" id="bola1">
+            <img src="images/golpe.png" id="golpe2">
+            <img src="images/araña.png" id="golpe3">
+
+        </div>
+
+        <div class="col s6" id="dos">
+            <p id="reducir2">0</p>
+            <img src="images/charizard.gif" id="gallo2">
+            <img src="images/dia.gif" id="explo2">
+            <img src="images/lapida.png" id="la2">
+            <div class="barra">
+                <p>Charizard 2</p>
+                <div class="fondo-barra">
+                    <p id="pvida2"> 100% </p>
+                    <div class="barra-vida" id="vida2">
+
+
+                    </div>
+
+                </div>
+
+            </div> <img src="images/boladefuego.png" id="bola2">
+            <img src="images/golpe.png" id="golpe1">
+        </div>
+
+    </div>
+</body>
+
+
+
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<script src="js.JS"></script>
+
+</html>
