@@ -108,8 +108,6 @@ function ataque(i) {
 
 }
 function reducir_vida(i) {
-setTimeout(() => {
-    
 
     let j = 0;
     if (i == 1)
@@ -143,12 +141,12 @@ setTimeout(() => {
         gallos['gallo' + i].danio_recibido = d;
         gallos['gallo' + i].vida -= d;
     }
-}, 3000);
+
 
 
 }
 function encontrar_ganador() {
-    
+
 
     if (gallos[`gallo1`].vida <= 0) {
         $('#explo1').css({ 'opacity': '1' });
@@ -180,8 +178,6 @@ function encontrar_ganador() {
         if (gallos[`gallo2`].vida <= 0) {
             $('#la2').css({ 'opacity': '1' });
             $('#explo2').css({ 'opacity': '0' });
-
-
         }
 
         if (gallos['gallo1'].vida <= 0 && gallos['gallo2'].vida <= 0) {
@@ -189,8 +185,6 @@ function encontrar_ganador() {
             $('#la1').css({ 'opacity': '1' });
             $('#explo1').css({ 'opacity': '0' });
             $('#explo2').css({ 'opacity': '0' });
-
-
         }
 
     }, 1500);
@@ -345,7 +339,10 @@ function descuento(i) {
 
     if (i == 2)
         j = 1
-    $('#vida' + i).css({ width: `${(gallos['gallo' + i].vida)}%` });
+    setTimeout(() => {
+
+        $('#vida' + i).css({ width: `${(gallos['gallo' + i].vida)}%` });
+    }, 1000);
 
     if (gallos['gallo' + i].vida <= 20) {
         $('#vida' + i).css({ background: 'white' });
@@ -360,6 +357,7 @@ function descuento(i) {
         $('#vida' + i).css({ background: 'chartreuse' });
     }
     $('#reducir' + i).html("-" + gallos['gallo' + i].danio_recibido);
+
 }
 function porciento(i) {
     if (gallos['gallo' + i].vida < 0) {
