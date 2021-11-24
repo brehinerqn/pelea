@@ -108,6 +108,8 @@ function ataque(i) {
 
 }
 function reducir_vida(i) {
+setTimeout(() => {
+    
 
     let j = 0;
     if (i == 1)
@@ -141,11 +143,12 @@ function reducir_vida(i) {
         gallos['gallo' + i].danio_recibido = d;
         gallos['gallo' + i].vida -= d;
     }
-
+}, 3000);
 
 
 }
-function encontrar_ganador(i) {
+function encontrar_ganador() {
+    
 
     if (gallos[`gallo1`].vida <= 0) {
         $('#explo1').css({ 'opacity': '1' });
@@ -167,6 +170,7 @@ function encontrar_ganador(i) {
 
         ganador = `EMPATE`;
     }
+
     setTimeout(() => {
         if (gallos[`gallo1`].vida <= 0) {
             $('#la1').css({ 'opacity': '1' });
@@ -263,23 +267,23 @@ function animar_ataque(i) {
         if (gallos['gallo' + i].nombre_ataque == "picotazo") {
             $('#bola' + i).css({ animation: a + ' 2s ease' })
             $('#gallo' + i).css({ animation: `sexy${i} 2s ease` });
-            $('#reducir' + i).css({ animation: 'rede 2s ease' })
+            $('#reducir' + i).css({ animation: 'rede 2s ease 1s' })
 
             fire.play();
         }
         if (gallos['gallo' + i].nombre_ataque == "espuelazo") {
             $('#gallo' + i).css({ animation: a + ' 2s ease' });
-            $('#reducir' + i).css({ animation: 'rede 2s ease' })
+            $('#reducir' + i).css({ animation: 'rede 1s ease 1s' })
             let b = 'fuego' + i;
             if (gallos['gallo' + j].nombre_ataque == "espuelazo") {
                 $('#golpe3').css({ animation: 'fuego_centro 0.5s ease 1s' });
-                $('#reducir' + i).css({ animation: 'rede 2s ease' });
+                $('#reducir' + i).css({ animation: 'rede 1s ease 1s' });
 
             }
 
             else {
                 $('#golpe' + i).css({ animation: b + ' 0.5s ease 1s' });
-                $('#reducir' + i).css({ animation: 'rede 2s ease' });
+                $('#reducir' + i).css({ animation: 'rede 1s ease 1s' });
             }
             cabeza.play();
         }
@@ -309,15 +313,15 @@ function animar_ataque(i) {
     if ((gallos['gallo' + i].estado == "defiende")) {
 
         $('#gallo' + i).css({ animation: a + ' 2s ease 1s' });
-        $('#reducir' + i).css({ animation: 'rede 2s ease' });
+        $('#reducir' + i).css({ animation: 'rede 1s ease 1s' });
     }
     if (gallos['gallo' + i].estado == "esquiva") {
         $('#gallo' + i).css({ animation: a + ' 2s ease' });
-        $('#reducir' + i).css({ animation: 'rede 2s ease' });
+        $('#reducir' + i).css({ animation: 'rede 1s ease 1s' });
     }
     if (gallos['gallo' + i].estado == "esconde") {
         $('#gallo' + i).css({ animation: a + ' 2s ease' });
-        $('#reducir' + i).css({ animation: 'rede 2s ease' });
+        $('#reducir' + i).css({ animation: 'rede 1s ease 1s' });
     }
     $('#gallo' + i).on('animationend', function () {
         $(this).css({ animation: 'none' })
